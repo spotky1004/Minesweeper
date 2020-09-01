@@ -27,11 +27,11 @@ bot.on('message', msg=>{
 
     if (argDone == 3) {
       fieldArr = [];
-      for (var i = 0; i < msgArg[0]; i++) {
+      for (var i = 0; i < msgArg[1]; i++) {
         fieldArr.push([]);
       }
-      for (var i = 0; i < msgArg[0]; i++) {
-        for (var j = 0; j < msgArg[1]; j++) {
+      for (var i = 0; i < msgArg[1]; i++) {
+        for (var j = 0; j < msgArg[0]; j++) {
           fieldArr[i].push(10);
         }
       }
@@ -49,8 +49,8 @@ bot.on('message', msg=>{
           break;
         }
       }
-      for (var i = Math.ceil(msgArg[1]/2-2); i < Math.floor(msgArg[1]/2+2); i++) {
-        for (var j = Math.ceil(msgArg[0]/2-2); j < Math.floor(msgArg[0]/2+2); j++) {
+      for (var i = Math.ceil(msgArg[0]/2-2); i < Math.floor(msgArg[0]/2+2); i++) {
+        for (var j = Math.ceil(msgArg[1]/2-2); j < Math.floor(msgArg[1]/2+2); j++) {
           if (fieldArr[j][i] == 11) {
             msgArg[2]--;
           }
@@ -79,16 +79,16 @@ bot.on('message', msg=>{
         }
       }
       emojiArr = [];
-      for (var i = 0; i < msgArg[0]; i++) {
+      for (var i = 0; i < msgArg[1]; i++) {
         emojiArr.push([]);
       }
-      for (var i = 0; i < msgArg[0]; i++) {
-        for (var j = 0; j < msgArg[1]; j++) {
+      for (var i = 0; i < msgArg[1]; i++) {
+        for (var j = 0; j < msgArg[0]; j++) {
           emojiArr[i].push(0);
         }
       }
-      for (var i = 0; i < msgArg[0]; i++) {
-        for (var j = 0; j < msgArg[1]; j++) {
+      for (var i = 0; i < msgArg[1]; i++) {
+        for (var j = 0; j < msgArg[0]; j++) {
           switch (fieldArr[i][j]) {
             case 10:
             emojiArr[i][j] = tileEmoji;
@@ -101,24 +101,24 @@ bot.on('message', msg=>{
           }
         }
       }
-      for (var i = 0; i < msgArg[0]; i++) {
-        for (var j = 0; j < msgArg[1]; j++) {
+      for (var i = 0; i < msgArg[1]; i++) {
+        for (var j = 0; j < msgArg[0]; j++) {
           emojiArr[i][j] = '||' + emojiArr[i][j] + '||';
         }
       }
-      for (var i = Math.ceil(msgArg[1]/2-2); i < Math.floor(msgArg[1]/2+2); i++) {
-        for (var j = Math.ceil(msgArg[0]/2-2); j < Math.floor(msgArg[0]/2+2); j++) {
+      for (var i = Math.ceil(msgArg[0]/2-2); i < Math.floor(msgArg[0]/2+2); i++) {
+        for (var j = Math.ceil(msgArg[1]/2-2); j < Math.floor(msgArg[1]/2+2); j++) {
           emojiArr[j][i] = emojiArr[j][i].replace(/\|\|/g, '');
         }
       }
-      heightLeft = msgArg[0];
+      heightLeft = msgArg[1];
       heightDone = 0;
       for (var i = 0; i < Math.ceil(fieldArr.length/4); i++) {
         msgToSend = '';
         heightThis = Math.min(heightLeft, 4);
         heightLeft -= heightThis;
         for (var j = heightDone; j < heightDone+heightThis; j++) {
-          for (var k = 0; k < msgArg[1]; k++) {
+          for (var k = 0; k < msgArg[0]; k++) {
             msgToSend += emojiArr[j][k];
           }
           msgToSend += '\n';
